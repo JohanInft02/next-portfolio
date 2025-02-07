@@ -98,8 +98,6 @@ export default function WorkExperiencesDetail() {
       categoryCount[exp.category] = (categoryCount[exp.category] || 0) + 1
     })
 
-    const total = Object.values(categoryCount).reduce((sum, count) => sum + count, 0)
-
     setChartData({
       labels: Object.keys(categoryCount),
       datasets: [
@@ -181,18 +179,18 @@ export default function WorkExperiencesDetail() {
                   tooltip: {
                     callbacks: {
                       label: (context: { label: string; parsed: number; dataset: { data: any[] } }) => {
-                        const label = context.label || ""
-                        const value = context.parsed || 0
-                        const total = context.dataset.data.reduce((a: number, b: number) => a + b, 0)
-                        const percentage = ((value / total) * 100).toFixed(2)
+                        const label: string = context.label || ""
+                        const value: number = context.parsed || 0
+                        const total: number = context.dataset.data.reduce((a: number, b: number) => a + b, 0)
+                        const percentage: string = ((value / total) * 100).toFixed(2)
                         return `${label}: ${percentage}%`
                       },
                     },
                   },
                   datalabels: {
                     formatter: (value: number, ctx: any) => {
-                      const total = ctx.dataset.data.reduce((a: number, b: number) => a + b, 0)
-                      const percentage = ((value / total) * 100).toFixed(2) + "%"
+                      const total: number = ctx.dataset.data.reduce((a: number, b: number) => a + b, 0)
+                      const percentage: string = ((value / total) * 100).toFixed(2) + "%"
                       return percentage
                     },
                     color: "#fff",
