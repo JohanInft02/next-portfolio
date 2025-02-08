@@ -5,7 +5,6 @@
 const nextConfig = {
   /* config options here */
   reactStrictMode: true,
-  swcMinify: false,
   images: {
     remotePatterns: [
       {
@@ -26,8 +25,8 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'udemy-certificate.s3.amazonaws.com',
         port: '',
-        pathname: '/account123/**',
-        search: '',
+        pathname: '/image/UC-b13a3fb2-f0bf-4105-8431-f21d23f5ed92.jpg',
+        search: '?v=1715619564000',
       },
     ],
   },

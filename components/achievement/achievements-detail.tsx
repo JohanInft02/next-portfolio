@@ -9,26 +9,40 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { ChevronLeft, Trophy } from "lucide-react"
 import Footer from "@/components/footer"
 
+interface Achievement {
+  title: string
+  description: string
+  year: string
+  institution: string
+  certificate?: string
+}
+
+const achievements: Achievement[] = [
+  {
+    title: "Lista del Decano",
+    description: "Mantuvo excelencia académica durante todo el programa",
+    year: "2023",
+    institution: "Universidad Tecnológica de Panamá",
+    certificate: "https://udemy-certificate.s3.amazonaws.com/image/UC-b13a3fb2-f0bf-4105-8431-f21d23f5ed92.jpg?v=1715619564000"
+  },
+  {
+    title: "Mejor Proyecto Final",
+    description: "Premiado por el proyecto final sobresaliente",
+    year: "2023",
+    institution: "Banco General S.A",
+    certificate: "https://udemy-certificate.s3.amazonaws.com/image/UC-b13a3fb2-f0bf-4105-8431-f21d23f5ed92.jpg?v=1715619564000"
+  },
+  {
+    title: "Ganador de Competencia de Programación",
+    description: "Primer lugar en la competencia de codificación a nivel universitario",
+    year: "2022",
+    institution: "IEEE Computer Society Panamá",
+    certificate: "https://udemy-certificate.s3.amazonaws.com/image/UC-b13a3fb2-f0bf-4105-8431-f21d23f5ed92.jpg?v=1715619564000"
+  },
+]
+
 export default function Achievements() {
   const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null)
-
-  const achievements = [
-    {
-      title: "Lista del Decano",
-      description: "Mantuvo excelencia académica durante todo el programa",
-      year: "2023",
-    },
-    {
-      title: "Mejor Proyecto Final",
-      description: "Premiado por el proyecto final sobresaliente",
-      year: "2023",
-    },
-    {
-      title: "Ganador de Competencia de Programación",
-      description: "Primer lugar en la competencia de codificación a nivel universitario",
-      year: "2022",
-    },
-  ]
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -50,7 +64,10 @@ export default function Achievements() {
                 {achievement.title}
               </h2>
               <p className="text-gray-700 dark:text-gray-300 mb-2 theme-transition">{achievement.description}</p>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-2 theme-transition">{achievement.year}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-2 theme-transition">Año: {achievement.year}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 theme-transition">
+                Institución: {achievement.institution}
+              </p>
               <Dialog>
                 <DialogTrigger asChild>
                   <Button
@@ -58,8 +75,8 @@ export default function Achievements() {
                     className="mt-2"
                     onClick={() =>
                       setSelectedCertificate(
-                        "https://udemy-certificate.s3.amazonaws.com/image/UC-b13a3fb2-f0bf-4105-8431-f21d23f5ed92.jpg?v=1715619564000",
-                      )
+                        achievement.certificate || "/placeholder.svg"
+                        )
                     }
                   >
                     Ver Certificado
@@ -88,4 +105,3 @@ export default function Achievements() {
     </div>
   )
 }
-

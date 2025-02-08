@@ -5,13 +5,15 @@ import Link from "next/link"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Pie } from "react-chartjs-2"
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js"
+import { Pie, Bar } from "react-chartjs-2"
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from "chart.js"
 import ChartDataLabels from "chartjs-plugin-datalabels"
 import { ChevronLeft } from "lucide-react"
 import Footer from "@/components/footer"
+import { formatDate } from "@/utils/format-date"
+import { useTheme } from "next-themes"
 
-ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels)
+ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels)
 
 interface WorkExperience {
   jobTitle: string
@@ -21,6 +23,7 @@ interface WorkExperience {
   category: string
   description: string
   technologies: string[]
+  workMode: "Remote" | "Hybrid" | "On-Site"
   promotion?: {
     previousTitle: string
     newTitle: string
@@ -31,71 +34,77 @@ interface WorkExperience {
 
 const workExperiencesData: WorkExperience[] = [
   {
-    jobTitle: "Líder Técnico",
-    company: "TechCorp",
-    startDate: "2021-01",
+    jobTitle: "Programador Fullstack",
+    company: "Banco General S.A",
+    startDate: "2022-09",
     endDate: "Presente",
     category: "Desarrollo Web",
     description:
       "Lideré el desarrollo de una plataforma de comercio electrónico de alto tráfico, mejorando el rendimiento en un 40%. Implementé arquitectura de microservicios y contenerización de la aplicación usando Docker.",
-    technologies: ["React", "Node.js", "MongoDB", "Docker", "AWS"],
+    technologies: ["Angular", "Java", "Sybase", "Ionic", "AWS"],
+    workMode: "Hybrid",
     promotion: {
-      previousTitle: "Desarrollador Fullstack",
-      newTitle: "Líder Técnico",
+      previousTitle: "Tecnico en Adiestramiento (Programador Jr)",
+      newTitle: "Programador Fullstack",
       date: "2023-06",
       description:
         "Promovido a Líder Técnico debido al excelente desempeño y liderazgo demostrado en proyectos críticos.",
     },
   },
   {
-    jobTitle: "Desarrollador de Aplicaciones Móviles",
-    company: "AppInnovate",
-    startDate: "2019-06",
-    endDate: "2020-12",
-    category: "Desarrollo Móvil",
+    jobTitle: "Consultor de Tecnología",
+    company: "Transiciones S.A",
+    startDate: "2019-11",
+    endDate: "2024-04",
+    category: "Desarrollo Web",
     description:
       "Desarrollé y lancé una aplicación de seguimiento de fitness con más de 100 mil descargas. Integré APIs de dispositivos wearables e implementé sincronización de datos en tiempo real.",
-    technologies: ["React Native", "Firebase", "Redux", "Jest"],
+    technologies: ["React", "Mysql", "Plugdo.js", "Javascript", "AWS"],
+    workMode: "Remote",
   },
   {
-    jobTitle: "Científico de Datos",
-    company: "DataInsights",
-    startDate: "2018-03",
-    endDate: "2019-05",
-    category: "Análisis de Datos",
+    jobTitle: "Administrador de Bases de Datos",
+    company: "RichInsights",
+    startDate: "2021-03",
+    endDate: "2022-06",
+    category: "Bases de Datos",
     description:
       "Desarrollé modelos predictivos para la deserción de clientes, aumentando la retención en un 25%. Implementé pipelines de datos y creé dashboards interactivos para inteligencia empresarial.",
     technologies: ["Python", "Pandas", "Scikit-learn", "Tableau", "SQL"],
-  },
-  {
-    jobTitle: "Ingeniero DevOps",
-    company: "CloudSolutions",
-    startDate: "2017-01",
-    endDate: "2018-02",
-    category: "DevOps",
-    description:
-      "Implementé pipelines de CI/CD, reduciendo el tiempo de despliegue en un 70%. Gestioné infraestructura en la nube en AWS e implementé infraestructura como código usando Terraform.",
-    technologies: ["Jenkins", "Kubernetes", "Terraform", "AWS", "Prometheus"],
-  },
-  {
-    jobTitle: "Desarrollador Frontend",
-    company: "UXMasters",
-    startDate: "2015-09",
-    endDate: "2016-12",
-    category: "Desarrollo Web",
-    description:
-      "Desarrollé aplicaciones web responsivas y accesibles. Implementé pruebas A/B y mejoré las tasas de conversión en un 15% a través de mejoras en la UI/UX.",
-    technologies: ["JavaScript", "Vue.js", "SASS", "Webpack", "Jest"],
+    workMode: "On-Site",
   },
 ]
 
+function calculateDuration(startDate: string, endDate: string): string {
+  const start = new Date(startDate)
+  const end = endDate === "Presente" ? new Date() : new Date(endDate)
+  const diffInMonths = (end.getFullYear() - start.getFullYear()) * 12 + end.getMonth() - start.getMonth()
+  const years = Math.floor(diffInMonths / 12)
+  const months = diffInMonths % 12
+
+  if (years > 0 && months > 0) {
+    return `${years} año${years > 1 ? "s" : ""} y ${months} mes${months > 1 ? "es" : ""}`
+  } else if (years > 0) {
+    return `${years} año${years > 1 ? "s" : ""}`
+  } else {
+    return `${months} mes${months > 1 ? "es" : ""}`
+  }
+}
+
 export default function WorkExperiencesDetail() {
+  const { theme } = useTheme()
   const [chartData, setChartData] = useState<any>(null)
+  const [skillsChartData, setSkillsChartData] = useState<any>(null)
 
   useEffect(() => {
     const categoryCount: { [key: string]: number } = {}
+    const skillsCount: { [key: string]: number } = {}
+
     workExperiencesData.forEach((exp) => {
       categoryCount[exp.category] = (categoryCount[exp.category] || 0) + 1
+      exp.technologies.forEach((tech) => {
+        skillsCount[tech] = (skillsCount[tech] || 0) + 1
+      })
     })
 
     setChartData({
@@ -103,12 +112,50 @@ export default function WorkExperiencesDetail() {
       datasets: [
         {
           data: Object.values(categoryCount),
-          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"],
-          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"],
+          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
         },
       ],
     })
-  }, [])
+
+    const totalSkillsCount = Object.values(skillsCount).reduce((a, b) => a + b, 0)
+    const sortedSkills = Object.entries(skillsCount)
+      .map(([skill, count]) => ({
+        skill,
+        count,
+        percentage: (count / totalSkillsCount) * 100,
+      }))
+      .sort((a, b) => b.percentage - a.percentage)
+      .slice(0, 5)
+
+    setSkillsChartData({
+      labels: sortedSkills.map((item) => item.skill),
+      datasets: [
+        {
+          data: sortedSkills.map((item) => item.percentage),
+          backgroundColor:
+            theme === "dark"
+              ? [
+                  "#4a69bd", // Darker Navy Blue
+                  "#10ac84", // Darker Teal
+                  "#ee5253", // Darker Pink
+                  "#e58e26", // Darker Orange
+                  "#b8e994", // Darker Lime Green
+                ]
+              : [
+                  "#1e3799", // Navy Blue
+                  "#00b894", // Teal
+                  "#ff7675", // Pink
+                  "#ffa502", // Orange
+                  "#c4e538", // Lime Green
+                ],
+          borderColor: "transparent",
+          borderRadius: 4,
+          barThickness: 40,
+        },
+      ],
+    })
+  }, [theme])
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -123,87 +170,192 @@ export default function WorkExperiencesDetail() {
         </div>
         <h1 className="text-3xl font-bold text-black dark:text-white mb-6 theme-transition">Experiencias Laborales</h1>
         <div className="grid gap-6">
-          {workExperiencesData.map((exp, index) => (
-            <Card key={index} className="p-6 bg-[#b7c7c9a1] dark:bg-[#252b48] theme-transition">
-              <div className="flex flex-col md:flex-row justify-between">
-                <div>
-                  <h2 className="text-xl font-semibold text-black dark:text-white mb-2 theme-transition">
-                    {exp.jobTitle}
-                  </h2>
-                  <h3 className="text-lg text-gray-700 dark:text-gray-300 mb-2 theme-transition">{exp.company}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-2 theme-transition">
-                    {exp.startDate} - {exp.endDate}
-                  </p>
-                </div>
-                <Badge className="mb-4 self-start">{exp.category}</Badge>
-              </div>
-              <p className="text-black dark:text-gray-300 mb-4 theme-transition">{exp.description}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {exp.technologies.map((tech, techIndex) => (
-                  <Badge key={techIndex} variant="secondary">
-                    {tech}
-                  </Badge>
-                ))}
-              </div>
-              {exp.promotion && (
-                <div className="mt-4 p-4 bg-green-100 dark:bg-green-900 rounded-lg">
-                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
-                    <h4 className="text-lg font-semibold text-green-800 dark:text-green-200">
-                      {exp.promotion.newTitle}
-                    </h4>
-                    <Badge variant="outline" className="mt-2 md:mt-0">
-                      Promoción
+          {workExperiencesData.map((exp, index) => {
+            const duration = calculateDuration(exp.startDate, exp.endDate)
+            const totalDuration = exp.promotion ? calculateDuration(exp.startDate, "Presente") : duration
+
+            return (
+              <Card key={index} className="p-6 bg-[#b7c7c9a1] dark:bg-[#252b48] theme-transition">
+                <div className="flex flex-col md:flex-row justify-between">
+                  <div>
+                    <h2 className="text-xl font-semibold text-black dark:text-white mb-2 theme-transition">
+                      {exp.jobTitle}
+                    </h2>
+                    <h3 className="text-lg text-gray-700 dark:text-gray-300 mb-2 theme-transition">{exp.company}</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2 theme-transition">
+                      {formatDate(exp.startDate)} - {formatDate(exp.endDate)}
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2 theme-transition">
+                      Duración en el cargo: {duration}
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2 theme-transition">
+                      Tiempo total en la empresa: {totalDuration}
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-end">
+                    <Badge className="mb-2">{exp.category}</Badge>
+                    <Badge variant="outline" className="mb-2">
+                      {exp.workMode}
                     </Badge>
                   </div>
-                  <p className="text-sm text-green-700 dark:text-green-300 mb-2">Desde {exp.promotion.date}</p>
-                  <p className="text-green-700 dark:text-green-300 mb-2">{exp.promotion.description}</p>
-                  <p className="text-sm text-green-600 dark:text-green-400">
-                    Cargo anterior: {exp.promotion.previousTitle}
-                  </p>
                 </div>
-              )}
-            </Card>
-          ))}
+                <p className="text-black dark:text-gray-300 mb-4 theme-transition">{exp.description}</p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {exp.technologies.map((tech, techIndex) => (
+                    <Badge key={techIndex} variant="secondary">
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+                {exp.promotion && (
+                  <div className="mt-4 p-4 bg-green-100 dark:bg-green-900 rounded-lg">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
+                      <h4 className="text-lg font-semibold text-green-800 dark:text-green-200">
+                        {exp.promotion.newTitle}
+                      </h4>
+                      <Badge variant="outline" className="mt-2 md:mt-0">
+                        Promoción
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-green-700 dark:text-green-300 mb-2">
+                      Desde {formatDate(exp.promotion.date)}
+                    </p>
+                    <p className="text-green-700 dark:text-green-300 mb-2">{exp.promotion.description}</p>
+                    <p className="text-sm text-green-600 dark:text-green-400">
+                      Cargo anterior: {exp.promotion.previousTitle}
+                    </p>
+                  </div>
+                )}
+              </Card>
+            )
+          })}
         </div>
-        {chartData && (
-          <div className="mt-12 max-w-md mx-auto">
-            <h2 className="text-2xl font-bold text-black dark:text-white mb-4 text-center theme-transition">
+
+        <div className="mt-12 space-y-12">
+          <div className="max-w-md mx-auto">
+            <h2 className="text-2xl font-bold text-black dark:text-white mb-6 text-center theme-transition">
               Distribución de Categorías
             </h2>
-            <Pie
-              data={chartData}
-              options={{
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                  tooltip: {
-                    callbacks: {
-                      label: (context: { label: string; parsed: number; dataset: { data: any[] } }) => {
-                        const label: string = context.label || ""
-                        const value: number = context.parsed || 0
-                        const total: number = context.dataset.data.reduce((a: number, b: number) => a + b, 0)
-                        const percentage: string = ((value / total) * 100).toFixed(2)
-                        return `${label}: ${percentage}%`
+            {chartData && (
+              <Pie
+                data={chartData}
+                options={{
+                  responsive: true,
+                  maintainAspectRatio: true,
+                  plugins: {
+                    legend: {
+                      position: "bottom",
+                      labels: {
+                        color: theme === "dark" ? "#fff" : "#000",
+                        padding: 20,
+                        font: {
+                          size: 12,
+                        },
+                      },
+                    },
+                    tooltip: {
+                      callbacks: {
+                        label: (context) => {
+                          const value = context.parsed
+                          const total = context.dataset.data.reduce((a: number, b: number) => a + b, 0)
+                          const percentage = ((value / total) * 100).toFixed(1)
+                          return `${percentage}%`
+                        },
+                      },
+                    },
+                    datalabels: {
+                      color: "#fff",
+                      font: {
+                        weight: "bold",
+                        size: 12,
+                      },
+                      formatter: (value: number, ctx: any) => {
+                        const total: number = ctx.dataset.data.reduce((a: number, b: number) => a + b, 0)
+                        const percentage: string = ((value / total) * 100).toFixed(2) + "%"
+                        return percentage
                       },
                     },
                   },
-                  datalabels: {
-                    formatter: (value: number, ctx: any) => {
-                      const total: number = ctx.dataset.data.reduce((a: number, b: number) => a + b, 0)
-                      const percentage: string = ((value / total) * 100).toFixed(2) + "%"
-                      return percentage
-                    },
-                    color: "#fff",
-                    font: {
-                      weight: "bold",
-                      size: 12,
-                    },
-                  },
-                },
-              }}
-            />
+                }}
+              />
+            )}
           </div>
-        )}
+
+          <div className="w-full">
+            <h2 className="text-2xl font-bold text-black dark:text-white mb-6 text-center theme-transition">
+              Distribución de Habilidades
+            </h2>
+            <div className="h-[400px] w-full">
+              {skillsChartData && (
+                <Bar
+                  data={skillsChartData}
+                  options={{
+                    indexAxis: "y",
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                      legend: {
+                        display: false,
+                      },
+                      tooltip: {
+                        callbacks: {
+                          label: (context) => {
+                            return `${context.parsed.x.toFixed(1)}%`
+                          },
+                        },
+                      },
+                      datalabels: {
+                        anchor: "end",
+                        align: "right",
+                        color: (context) => {
+                          const value = context.dataset.data[context.dataIndex] as number
+                          return value < 50 ? (theme === "dark" ? "#fff" : "#000") : "#fff"
+                        },
+                        font: {
+                          weight: "bold",
+                          size: 14,
+                        },
+                        formatter: (value) => `${value.toFixed(1)}%`,
+                      },
+                    },
+                    scales: {
+                      x: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: {
+                          display: false,
+                          color: theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)",
+                        },
+                        ticks: {
+                          callback: (value) => `${value}%`,
+                          color: theme === "dark" ? "#fff" : "#000",
+                        },
+                        border: {
+                          display: false,
+                        },
+                      },
+                      y: {
+                        grid: {
+                          display: false,
+                        },
+                        ticks: {
+                          color: theme === "dark" ? "#fff" : "#000",
+                          font: {
+                            size: 14,
+                            weight: 500,
+                          },
+                        },
+                        border: {
+                          display: false,
+                        },
+                      },
+                    },
+                  }}
+                />
+              )}
+            </div>
+          </div>
+        </div>
       </div>
       <Footer />
     </div>
