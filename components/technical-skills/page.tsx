@@ -29,7 +29,6 @@ export default function ContactSection() {
     const carousel = carouselRef.current
     if (carousel) {
       const scrollWidth = carousel.scrollWidth
-      const clientWidth = carousel.clientWidth
 
       let scrollPosition = 0
       const scroll = () => {
