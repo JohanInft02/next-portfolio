@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { ChevronLeft, Trophy } from "lucide-react"
 import Footer from "@/components/footer"
 
@@ -13,8 +13,7 @@ interface Achievement {
   title: string
   description: string
   year: string
-  institution: string
-  certificate?: string
+  institution: string // New field
 }
 
 const achievements: Achievement[] = [
@@ -23,26 +22,25 @@ const achievements: Achievement[] = [
     description: "Mantuvo excelencia académica durante todo el programa",
     year: "2023",
     institution: "Universidad Tecnológica de Panamá",
-    certificate: "https://udemy-certificate.s3.amazonaws.com/image/UC-b13a3fb2-f0bf-4105-8431-f21d23f5ed92.jpg?v=1715619564000"
   },
   {
     title: "Mejor Proyecto Final",
     description: "Premiado por el proyecto final sobresaliente",
     year: "2023",
     institution: "Banco General S.A",
-    certificate: "https://udemy-certificate.s3.amazonaws.com/image/UC-b13a3fb2-f0bf-4105-8431-f21d23f5ed92.jpg?v=1715619564000"
   },
   {
     title: "Ganador de Competencia de Programación",
     description: "Primer lugar en la competencia de codificación a nivel universitario",
     year: "2022",
     institution: "IEEE Computer Society Panamá",
-    certificate: "https://udemy-certificate.s3.amazonaws.com/image/UC-b13a3fb2-f0bf-4105-8431-f21d23f5ed92.jpg?v=1715619564000"
   },
 ]
 
 export default function Achievements() {
-  const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null)
+  //const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null)
+  const [open, setOpen] = useState(false)
+  const [selectedAchievement, setSelectedAchievement] = useState<Achievement | null>(null)
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -68,38 +66,40 @@ export default function Achievements() {
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 theme-transition">
                 Institución: {achievement.institution}
               </p>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="mt-2"
-                    onClick={() =>
-                      setSelectedCertificate(
-                        achievement.certificate || "/placeholder.svg"
-                        )
-                    }
-                  >
-                    Ver Certificado
-                  </Button>
-                </DialogTrigger>
-                <DialogContent aria-describedby="achievement-certificate-description">
-                  <div id="achievement-certificate-description" className="sr-only">
-                    Vista detallada del certificado de logro
-                  </div>
-                  {selectedCertificate && (
-                    <Image
-                      src={selectedCertificate || "/placeholder.svg"}
-                      alt="Certificado"
-                      width={800}
-                      height={600}
-                      className="w-full h-auto"
-                    />
-                  )}
-                </DialogContent>
-              </Dialog>
+              <Button
+                variant="outline"
+                className="mt-2"
+                onClick={() => {
+                  setOpen(true)
+                  setSelectedAchievement(achievement)
+                }}
+              >
+                Ver Certificado
+              </Button>
             </Card>
           ))}
         </div>
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogContent>
+            {selectedAchievement && (
+              <>
+                <Image
+                  src={`/certificates/${selectedAchievement.title}.jpg`}
+                  alt={selectedAchievement.title}
+                  width={800}
+                  height={600}
+                  className="w-full h-auto"
+                  onError={(e) => {
+                    console.error(e)
+                  }}
+                />
+                <Button onClick={() => setOpen(false)} className="mt-4">
+                  Cerrar
+                </Button>
+              </>
+            )}
+          </DialogContent>
+        </Dialog>
       </div>
       <Footer />
     </div>

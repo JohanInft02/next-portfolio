@@ -1,5 +1,3 @@
-"use client"
-
 import { Card } from "@/components/ui/card"
 import { Icon } from "@iconify/react"
 import { useEffect, useRef } from "react"
@@ -29,15 +27,18 @@ export default function ContactSection() {
     const carousel = carouselRef.current
     if (carousel) {
       const scrollWidth = carousel.scrollWidth
+      const clientWidth = carousel.clientWidth
 
       let scrollPosition = 0
       const scroll = () => {
         scrollPosition += 1
-        if (scrollPosition > scrollWidth / 2) {
+        if (scrollPosition > (scrollWidth ?? 0) / 2) {
           scrollPosition = 0
         }
-        carousel.scrollLeft = scrollPosition
-        requestAnimationFrame(scroll)
+        if (carousel) {
+          carousel.scrollLeft = scrollPosition
+          requestAnimationFrame(scroll)
+        }
       }
 
       requestAnimationFrame(scroll)
@@ -62,4 +63,3 @@ export default function ContactSection() {
     </Card>
   )
 }
-

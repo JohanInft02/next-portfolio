@@ -12,6 +12,7 @@ import { ChevronLeft } from "lucide-react"
 import Footer from "@/components/footer"
 import { formatDate } from "@/utils/format-date"
 import { useTheme } from "next-themes"
+import type { ChartData, TooltipItem } from "chart.js"
 
 ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels)
 
@@ -93,8 +94,8 @@ function calculateDuration(startDate: string, endDate: string): string {
 
 export default function WorkExperiencesDetail() {
   const { theme } = useTheme()
-  const [chartData, setChartData] = useState<any>(null)
-  const [skillsChartData, setSkillsChartData] = useState<any>(null)
+  const [chartData, setChartData] = useState<ChartData<"pie", number[], string> | null>(null)
+  const [skillsChartData, setSkillsChartData] = useState<ChartData<"bar", number[], string> | null>(null)
 
   useEffect(() => {
     const categoryCount: { [key: string]: number } = {}
@@ -255,7 +256,7 @@ export default function WorkExperiencesDetail() {
                     },
                     tooltip: {
                       callbacks: {
-                        label: (context) => {
+                        label: (context: TooltipItem<"pie">) => {
                           const value = context.parsed
                           const total = context.dataset.data.reduce((a: number, b: number) => a + b, 0)
                           const percentage = ((value / total) * 100).toFixed(1)
@@ -269,10 +270,10 @@ export default function WorkExperiencesDetail() {
                         weight: "bold",
                         size: 12,
                       },
-                      formatter: (value: number, ctx: any) => {
-                        const total: number = ctx.dataset.data.reduce((a: number, b: number) => a + b, 0)
-                        const percentage: string = ((value / total) * 100).toFixed(2) + "%"
-                        return percentage
+                      formatter: (value: number, ctx: { dataset: { data: number[] } }) => {
+                        const total = ctx.dataset.data.reduce((a: number, b: number) => a + b, 0)
+                        const percentage = ((value / total) * 100).toFixed(1)
+                        return `${percentage}%`
                       },
                     },
                   },
@@ -361,3 +362,4 @@ export default function WorkExperiencesDetail() {
     </div>
   )
 }
+

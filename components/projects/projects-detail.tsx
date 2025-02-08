@@ -233,7 +233,8 @@ const ProjectCard = ({ project }: { project: Project }) => (
 )
 
 export default function ProjectsDetail() {
-  const [currentSlides, setCurrentSlides] = useState({
+  type CategoryType = "Web" | "Mobile" | "Data Analytics"
+  const [currentSlides, setCurrentSlides] = useState<Record<CategoryType, number>>({
     Web: 0,
     Mobile: 0,
     "Data Analytics": 0,
@@ -321,4 +322,3 @@ export default function ProjectsDetail() {
     </div>
   )
 }
-
