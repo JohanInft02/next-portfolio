@@ -1,3 +1,5 @@
+"use client"
+
 import { Card } from "@/components/ui/card"
 import { Icon } from "@iconify/react"
 import { useEffect, useRef } from "react"
