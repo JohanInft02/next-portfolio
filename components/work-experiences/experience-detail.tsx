@@ -280,62 +280,6 @@ export default function WorkExperiencesDetail() {
         </div>
 
         <div className="mt-12 space-y-12">
-          <div className="max-w-md mx-auto">
-            <h2 className="text-2xl font-bold text-black dark:text-white mb-6 text-center theme-transition">
-              Distribución de Categorías
-            </h2>
-            {chartData && (
-              <Pie
-                data={chartData}
-                options={{
-                  responsive: true,
-                  maintainAspectRatio: true,
-                  plugins: {
-                    legend: {
-                      position: "bottom",
-                      labels: {
-                        color: theme === "dark" ? "#fff" : "#000",
-                        padding: 20,
-                        font: {
-                          size: 12,
-                        },
-                      },
-                    },
-                    tooltip: {
-                      callbacks: {
-                        label: (context: TooltipItem<"pie">) => {
-                          const value = context.parsed;
-                          const total = context.dataset.data.reduce(
-                            (a: number, b: number) => a + b,
-                            0
-                          );
-                          const percentage = ((value / total) * 100).toFixed(1);
-                          return `${percentage}%`;
-                        },
-                      },
-                    },
-                    datalabels: {
-                      color: "#fff",
-                      font: {
-                        weight: "bold",
-                        size: 12,
-                      },
-                      formatter: (
-                        value: number,
-                        context: any
-                      ) => {
-                        const total = context.dataset.data.reduce(
-                          (a: number, b: number) => a + b, 0 );
-                        const percentage = ((value / total) * 100).toFixed(1);
-                        return `${percentage}%`;
-                      },
-                    },
-                  },
-                }}
-              />
-            )}
-          </div>
-
           <div className="w-full">
             <h2 className="text-2xl font-bold text-black dark:text-white mb-6 text-center theme-transition">
               Distribución de Habilidades
