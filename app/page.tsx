@@ -1,13 +1,13 @@
-import ProfileSection from "@/components/profile/page"
-import WelcomeSection from "@/components/welcome/page"
-import AchievementSection from "@/components/achievement/page"
-import WorkExperiencesSection from "@/components/work-experiences/page"
-import EducationSection from "@/components/education/page"
-import ContactSection from "@/components/technical-skills/page"
-import ProjectsSection from "@/components/projects/page"
-import ProficiencySection from "@/components/contact/page"
-import ResumeSection from "@/components/resume/page"
-import Footer from "@/components/footer"
+import ProfileSection from "@/components/profile/page";
+import WelcomeSection from "@/components/welcome/page";
+import AchievementSection from "@/components/achievement/page";
+import WorkExperiencesSection from "@/components/work-experiences/page";
+import EducationSection from "@/components/education/page";
+import ContactSection from "@/components/technical-skills/page";
+import ProjectsSection from "@/components/projects/page";
+import ProficiencySection from "@/components/contact/page";
+import ResumeSection from "@/components/resume/page";
+import Footer from "@/components/footer";
 
 export default function Home() {
   return (
@@ -45,6 +45,5 @@ export default function Home() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
-

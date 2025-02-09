@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { useTheme } from "next-themes"
-import { Icon } from "@iconify/react"
+import { useTheme } from "next-themes";
+import { Icon } from "@iconify/react";
 
 export default function Loading() {
-  const { theme } = useTheme()
+  const { theme } = useTheme();
 
   return (
     <div
@@ -29,6 +29,5 @@ export default function Loading() {
         />
       </div>
     </div>
-  )
+  );
 }
-

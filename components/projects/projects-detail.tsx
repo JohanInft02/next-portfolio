@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, Globe, Github } from "lucide-react"
-import Footer from "@/components/footer"
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight, Globe, Github } from "lucide-react";
+import Footer from "@/components/footer";
 
 interface Project {
-  id: number
-  title: string
-  category: "Web" | "Mobile" | "Data Analytics"
-  image: string
-  technologies: string[]
-  liveUrl: string
-  codeUrl: string
+  id: number;
+  title: string;
+  category: "Web" | "Mobile" | "Data Analytics";
+  image: string;
+  technologies: string[];
+  liveUrl: string;
+  codeUrl: string;
 }
 
 const projects: Project[] = [
@@ -183,12 +183,17 @@ const projects: Project[] = [
     codeUrl: "https://github.com",
   },
   // ... (add 15 more projects to reach a total of 18)
-]
+];
 
 const ProjectCard = ({ project }: { project: Project }) => (
   <Card className="overflow-hidden bg-white dark:bg-[#252b48] transition-all duration-200 hover:shadow-lg">
     <div className="aspect-video relative">
-      <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
+      <Image
+        src={project.image || "/placeholder.svg"}
+        alt={project.title}
+        fill
+        className="object-cover"
+      />
     </div>
     <div className="p-4">
       <Badge
@@ -196,28 +201,44 @@ const ProjectCard = ({ project }: { project: Project }) => (
           project.category === "Web"
             ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100"
             : project.category === "Mobile"
-              ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100"
-              : "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-100"
+            ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100"
+            : "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-100"
         }`}
       >
         {project.category}
       </Badge>
-      <h3 className="text-lg font-semibold text-black dark:text-white mb-2 theme-transition">{project.title}</h3>
+      <h3 className="text-lg font-semibold text-black dark:text-white mb-2 theme-transition">
+        {project.title}
+      </h3>
       <div className="flex flex-wrap gap-2 mb-4">
         {project.technologies.map((tech) => (
-          <Badge key={tech} variant="secondary" className="bg-gray-100 dark:bg-gray-800">
+          <Badge
+            key={tech}
+            variant="secondary"
+            className="bg-gray-100 dark:bg-gray-800"
+          >
             {tech}
           </Badge>
         ))}
       </div>
       <div className="flex gap-3">
-        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
+        <a
+          href={project.liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1"
+        >
           <Button variant="outline" size="sm" className="w-full">
             <Globe className="w-4 h-4 mr-2" />
             Ver en Vivo
           </Button>
         </a>
-        <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" className="flex-1">
+        <a
+          href={project.codeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1"
+        >
           <Button
             variant="default"
             size="sm"
@@ -230,39 +251,55 @@ const ProjectCard = ({ project }: { project: Project }) => (
       </div>
     </div>
   </Card>
-)
+);
 
 export default function ProjectsDetail() {
-  type CategoryType = "Web" | "Mobile" | "Data Analytics"
-  const [currentSlides, setCurrentSlides] = useState<Record<CategoryType, number>>({
+  type CategoryType = "Web" | "Mobile" | "Data Analytics";
+  const [currentSlides, setCurrentSlides] = useState<
+    Record<CategoryType, number>
+  >({
     Web: 0,
     Mobile: 0,
     "Data Analytics": 0,
-  })
+  });
 
-  const getProjectsByCategory = (category: "Web" | "Mobile" | "Data Analytics") => {
-    return projects.filter((project) => project.category === category)
-  }
+  const getProjectsByCategory = (
+    category: "Web" | "Mobile" | "Data Analytics"
+  ) => {
+    return projects.filter((project) => project.category === category);
+  };
 
-  const handleSlideChange = (category: "Web" | "Mobile" | "Data Analytics", direction: "next" | "prev") => {
-    const categoryProjects = getProjectsByCategory(category)
-    const maxSlides = Math.ceil(categoryProjects.length / 3)
+  const handleSlideChange = (
+    category: "Web" | "Mobile" | "Data Analytics",
+    direction: "next" | "prev"
+  ) => {
+    const categoryProjects = getProjectsByCategory(category);
+    const maxSlides = Math.ceil(categoryProjects.length / 3);
 
     setCurrentSlides((prev) => ({
       ...prev,
       [category]:
-        direction === "next" ? (prev[category] + 1) % maxSlides : (prev[category] - 1 + maxSlides) % maxSlides,
-    }))
-  }
+        direction === "next"
+          ? (prev[category] + 1) % maxSlides
+          : (prev[category] - 1 + maxSlides) % maxSlides,
+    }));
+  };
 
-  const categories: ("Web" | "Mobile" | "Data Analytics")[] = ["Web", "Mobile", "Data Analytics"]
+  const categories: ("Web" | "Mobile" | "Data Analytics")[] = [
+    "Web",
+    "Mobile",
+    "Data Analytics",
+  ];
 
   return (
     <div className="flex flex-col min-h-screen">
       <div className="container mx-auto p-4 flex-grow">
         <div className="mb-6">
           <Link href="/">
-            <Button variant="ghost" className="text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800">
+            <Button
+              variant="ghost"
+              className="text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800"
+            >
               <ChevronLeft className="mr-2 h-4 w-4" />
               Regresar al Inicio
             </Button>
@@ -272,9 +309,9 @@ export default function ProjectsDetail() {
           Mis Proyectos
         </h1>
         {categories.map((category) => {
-          const categoryProjects = getProjectsByCategory(category)
-          const maxSlides = Math.ceil(categoryProjects.length / 3)
-          const hasProjects = categoryProjects.length > 0
+          const categoryProjects = getProjectsByCategory(category);
+          const maxSlides = Math.ceil(categoryProjects.length / 3);
+          const hasProjects = categoryProjects.length > 0;
 
           return (
             <div key={category} className="mb-12">
@@ -283,8 +320,8 @@ export default function ProjectsDetail() {
                   {category === "Web"
                     ? "Proyectos Web"
                     : category === "Mobile"
-                      ? "Aplicaciones Móviles"
-                      : "Análisis de Datos"}
+                    ? "Aplicaciones Móviles"
+                    : "Análisis de Datos"}
                 </h2>
                 {hasProjects && maxSlides > 1 && (
                   <div className="flex gap-2">
@@ -309,16 +346,19 @@ export default function ProjectsDetail() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {categoryProjects
-                  .slice(currentSlides[category] * 3, (currentSlides[category] + 1) * 3)
+                  .slice(
+                    currentSlides[category] * 3,
+                    (currentSlides[category] + 1) * 3
+                  )
                   .map((project) => (
                     <ProjectCard key={project.id} project={project} />
                   ))}
               </div>
             </div>
-          )
+          );
         })}
       </div>
       <Footer />
     </div>
-  )
+  );
 }

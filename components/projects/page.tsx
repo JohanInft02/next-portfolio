@@ -1,6 +1,6 @@
-import Link from "next/link"
-import { Card } from "@/components/ui/card"
-import Image from "next/image"
+import Link from "next/link";
+import { Card } from "@/components/ui/card";
+import Image from "next/image";
 
 export default function ProjectsSection() {
   return (
@@ -18,12 +18,12 @@ export default function ProjectsSection() {
         <div className="relative z-10 p-4 md:p-6">
           <h3 className="text-xl font-bold text-white mb-2">Mis Proyectos</h3>
           <p className="text-sm md:text-base text-gray-300">
-            💡¡Aquí es donde la magia del código cobra vida! Explora mis proyectos web, móviles y más. ¿Listo para ver
-            qué se esconde tras cada línea de código? 🔥✨
+            💡¡Aquí es donde la magia del código cobra vida! Explora mis
+            proyectos web, móviles y más. ¿Listo para ver qué se esconde tras
+            cada línea de código? 🔥✨
           </p>
         </div>
       </Card>
     </Link>
-  )
+  );
 }
-

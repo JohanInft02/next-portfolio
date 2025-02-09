@@ -1,36 +1,54 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Pie, Bar } from "react-chartjs-2"
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from "chart.js"
-import ChartDataLabels from "chartjs-plugin-datalabels"
-import { ChevronLeft } from "lucide-react"
-import Footer from "@/components/footer"
-import { formatDate } from "@/utils/format-date"
-import { useTheme } from "next-themes"
-import type { ChartData, TooltipItem } from "chart.js"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Pie, Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+} from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+import { ChevronLeft } from "lucide-react";
+import Footer from "@/components/footer";
+import { formatDate } from "@/utils/format-date";
+import { useTheme } from "next-themes";
+import type { ChartData, TooltipItem } from "chart.js";
 
-ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels)
+ChartJS.register(
+  ArcElement,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  ChartDataLabels
+);
 
 interface WorkExperience {
-  jobTitle: string
-  company: string
-  startDate: string
-  endDate: string
-  category: string
-  description: string
-  technologies: string[]
-  workMode: "Remote" | "Hybrid" | "On-Site"
+  jobTitle: string;
+  company: string;
+  startDate: string;
+  endDate: string;
+  category: string;
+  description: string;
+  technologies: string[];
+  workMode: "Remote" | "Hybrid" | "On-Site";
   promotion?: {
-    previousTitle: string
-    newTitle: string
-    date: string
-    description: string
-  }
+    previousTitle: string;
+    newTitle: string;
+    date: string;
+    description: string;
+  };
 }
 
 const workExperiencesData: WorkExperience[] = [
@@ -74,39 +92,52 @@ const workExperiencesData: WorkExperience[] = [
     technologies: ["Python", "Pandas", "Scikit-learn", "Tableau", "SQL"],
     workMode: "On-Site",
   },
-]
+];
 
 function calculateDuration(startDate: string, endDate: string): string {
-  const start = new Date(startDate)
-  const end = endDate === "Presente" ? new Date() : new Date(endDate)
-  const diffInMonths = (end.getFullYear() - start.getFullYear()) * 12 + end.getMonth() - start.getMonth()
-  const years = Math.floor(diffInMonths / 12)
-  const months = diffInMonths % 12
+  const start = new Date(startDate);
+  const end = endDate === "Presente" ? new Date() : new Date(endDate);
+  const diffInMonths =
+    (end.getFullYear() - start.getFullYear()) * 12 +
+    end.getMonth() -
+    start.getMonth();
+  const years = Math.floor(diffInMonths / 12);
+  const months = diffInMonths % 12;
 
   if (years > 0 && months > 0) {
-    return `${years} año${years > 1 ? "s" : ""} y ${months} mes${months > 1 ? "es" : ""}`
+    return `${years} año${years > 1 ? "s" : ""} y ${months} mes${
+      months > 1 ? "es" : ""
+    }`;
   } else if (years > 0) {
-    return `${years} año${years > 1 ? "s" : ""}`
+    return `${years} año${years > 1 ? "s" : ""}`;
   } else {
-    return `${months} mes${months > 1 ? "es" : ""}`
+    return `${months} mes${months > 1 ? "es" : ""}`;
   }
 }
 
 export default function WorkExperiencesDetail() {
-  const { theme } = useTheme()
-  const [chartData, setChartData] = useState<ChartData<"pie", number[], string> | null>(null)
-  const [skillsChartData, setSkillsChartData] = useState<ChartData<"bar", number[], string> | null>(null)
+  const { theme } = useTheme();
+  const [chartData, setChartData] = useState<ChartData<
+    "pie",
+    number[],
+    string
+  > | null>(null);
+  const [skillsChartData, setSkillsChartData] = useState<ChartData<
+    "bar",
+    number[],
+    string
+  > | null>(null);
 
   useEffect(() => {
-    const categoryCount: { [key: string]: number } = {}
-    const skillsCount: { [key: string]: number } = {}
+    const categoryCount: { [key: string]: number } = {};
+    const skillsCount: { [key: string]: number } = {};
 
     workExperiencesData.forEach((exp) => {
-      categoryCount[exp.category] = (categoryCount[exp.category] || 0) + 1
+      categoryCount[exp.category] = (categoryCount[exp.category] || 0) + 1;
       exp.technologies.forEach((tech) => {
-        skillsCount[tech] = (skillsCount[tech] || 0) + 1
-      })
-    })
+        skillsCount[tech] = (skillsCount[tech] || 0) + 1;
+      });
+    });
 
     setChartData({
       labels: Object.keys(categoryCount),
@@ -117,9 +148,12 @@ export default function WorkExperiencesDetail() {
           hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
         },
       ],
-    })
+    });
 
-    const totalSkillsCount = Object.values(skillsCount).reduce((a, b) => a + b, 0)
+    const totalSkillsCount = Object.values(skillsCount).reduce(
+      (a, b) => a + b,
+      0
+    );
     const sortedSkills = Object.entries(skillsCount)
       .map(([skill, count]) => ({
         skill,
@@ -127,7 +161,7 @@ export default function WorkExperiencesDetail() {
         percentage: (count / totalSkillsCount) * 100,
       }))
       .sort((a, b) => b.percentage - a.percentage)
-      .slice(0, 5)
+      .slice(0, 5);
 
     setSkillsChartData({
       labels: sortedSkills.map((item) => item.skill),
@@ -155,8 +189,8 @@ export default function WorkExperiencesDetail() {
           barThickness: 40,
         },
       ],
-    })
-  }, [theme])
+    });
+  }, [theme]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -169,20 +203,29 @@ export default function WorkExperiencesDetail() {
             </Button>
           </Link>
         </div>
-        <h1 className="text-3xl font-bold text-black dark:text-white mb-6 theme-transition">Experiencias Laborales</h1>
+        <h1 className="text-3xl font-bold text-black dark:text-white mb-6 theme-transition">
+          Experiencias Laborales
+        </h1>
         <div className="grid gap-6">
           {workExperiencesData.map((exp, index) => {
-            const duration = calculateDuration(exp.startDate, exp.endDate)
-            const totalDuration = exp.promotion ? calculateDuration(exp.startDate, "Presente") : duration
+            const duration = calculateDuration(exp.startDate, exp.endDate);
+            const totalDuration = exp.promotion
+              ? calculateDuration(exp.startDate, "Presente")
+              : duration;
 
             return (
-              <Card key={index} className="p-6 bg-[#b7c7c9a1] dark:bg-[#252b48] theme-transition">
+              <Card
+                key={index}
+                className="p-6 bg-[#b7c7c9a1] dark:bg-[#252b48] theme-transition"
+              >
                 <div className="flex flex-col md:flex-row justify-between">
                   <div>
                     <h2 className="text-xl font-semibold text-black dark:text-white mb-2 theme-transition">
                       {exp.jobTitle}
                     </h2>
-                    <h3 className="text-lg text-gray-700 dark:text-gray-300 mb-2 theme-transition">{exp.company}</h3>
+                    <h3 className="text-lg text-gray-700 dark:text-gray-300 mb-2 theme-transition">
+                      {exp.company}
+                    </h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mb-2 theme-transition">
                       {formatDate(exp.startDate)} - {formatDate(exp.endDate)}
                     </p>
@@ -200,7 +243,9 @@ export default function WorkExperiencesDetail() {
                     </Badge>
                   </div>
                 </div>
-                <p className="text-black dark:text-gray-300 mb-4 theme-transition">{exp.description}</p>
+                <p className="text-black dark:text-gray-300 mb-4 theme-transition">
+                  {exp.description}
+                </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {exp.technologies.map((tech, techIndex) => (
                     <Badge key={techIndex} variant="secondary">
@@ -221,14 +266,16 @@ export default function WorkExperiencesDetail() {
                     <p className="text-sm text-green-700 dark:text-green-300 mb-2">
                       Desde {formatDate(exp.promotion.date)}
                     </p>
-                    <p className="text-green-700 dark:text-green-300 mb-2">{exp.promotion.description}</p>
+                    <p className="text-green-700 dark:text-green-300 mb-2">
+                      {exp.promotion.description}
+                    </p>
                     <p className="text-sm text-green-600 dark:text-green-400">
                       Cargo anterior: {exp.promotion.previousTitle}
                     </p>
                   </div>
                 )}
               </Card>
-            )
+            );
           })}
         </div>
 
@@ -257,10 +304,13 @@ export default function WorkExperiencesDetail() {
                     tooltip: {
                       callbacks: {
                         label: (context: TooltipItem<"pie">) => {
-                          const value = context.parsed
-                          const total = context.dataset.data.reduce((a: number, b: number) => a + b, 0)
-                          const percentage = ((value / total) * 100).toFixed(1)
-                          return `${percentage}%`
+                          const value = context.parsed;
+                          const total = context.dataset.data.reduce(
+                            (a: number, b: number) => a + b,
+                            0
+                          );
+                          const percentage = ((value / total) * 100).toFixed(1);
+                          return `${percentage}%`;
                         },
                       },
                     },
@@ -270,10 +320,14 @@ export default function WorkExperiencesDetail() {
                         weight: "bold",
                         size: 12,
                       },
-                      formatter: (value: number, ctx: { dataset: { data: number[] } }) => {
-                        const total = ctx.dataset.data.reduce((a: number, b: number) => a + b, 0)
-                        const percentage = ((value / total) * 100).toFixed(1)
-                        return `${percentage}%`
+                      formatter: (
+                        value: number,
+                        context: any
+                      ) => {
+                        const total = context.dataset.data.reduce(
+                          (a: number, b: number) => a + b, 0 );
+                        const percentage = ((value / total) * 100).toFixed(1);
+                        return `${percentage}%`;
                       },
                     },
                   },
@@ -301,7 +355,7 @@ export default function WorkExperiencesDetail() {
                       tooltip: {
                         callbacks: {
                           label: (context) => {
-                            return `${context.parsed.x.toFixed(1)}%`
+                            return `${context.parsed.x.toFixed(1)}%`;
                           },
                         },
                       },
@@ -309,8 +363,14 @@ export default function WorkExperiencesDetail() {
                         anchor: "end",
                         align: "right",
                         color: (context) => {
-                          const value = context.dataset.data[context.dataIndex] as number
-                          return value < 50 ? (theme === "dark" ? "#fff" : "#000") : "#fff"
+                          const value = context.dataset.data[
+                            context.dataIndex
+                          ] as number;
+                          return value < 50
+                            ? theme === "dark"
+                              ? "#fff"
+                              : "#000"
+                            : "#fff";
                         },
                         font: {
                           weight: "bold",
@@ -325,7 +385,10 @@ export default function WorkExperiencesDetail() {
                         max: 100,
                         grid: {
                           display: false,
-                          color: theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)",
+                          color:
+                            theme === "dark"
+                              ? "rgba(255, 255, 255, 0.1)"
+                              : "rgba(0, 0, 0, 0.1)",
                         },
                         ticks: {
                           callback: (value) => `${value}%`,
@@ -360,6 +423,6 @@ export default function WorkExperiencesDetail() {
       </div>
       <Footer />
     </div>
-  )
+  );
 }
-
+ 

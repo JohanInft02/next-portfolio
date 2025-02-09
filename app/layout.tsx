@@ -1,29 +1,29 @@
-"use client"
+"use client";
 
-import "./globals.css"
-import { Inter } from 'next/font/google'
-import { ThemeProvider } from "@/components/theme-provider"
-import Header from "@/components/header"
-import Loading from "@/components/loading"
-import type React from "react"
-import { useState, useEffect } from "react"
+import "./globals.css";
+import { Inter } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
+import Header from "@/components/header";
+import Loading from "@/components/loading";
+import type React from "react";
+import { useState, useEffect } from "react";
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 2000)
+      setIsLoading(false);
+    }, 2000);
 
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <html lang="es" suppressHydrationWarning>
@@ -43,6 +43,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }
-

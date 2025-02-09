@@ -1,5 +1,5 @@
-import { Card } from "@/components/ui/card"
-import { Icon } from "@iconify/react"
+import { Card } from "@/components/ui/card";
+import { Icon } from "@iconify/react";
 
 export default function WelcomeSection() {
   return (
@@ -10,13 +10,17 @@ export default function WelcomeSection() {
             Bienvenidos a mi espacio!
           </h1>
           <p className="text-sm md:text-base text-black dark:text-gray-300 max-w-[600px] theme-transition">
-            🚀 Explora mi portafolio y descubre cómo combino Fullstack, DevOps y Data para crear apps y soluciones
-            increíbles. 💡🔥
+            🚀 Explora mi portafolio y descubre cómo combino Fullstack, DevOps y
+            Data para crear apps y soluciones increíbles. 💡🔥
           </p>
         </div>
-        <Icon icon="fluent-emoji:man-technologist-medium" width={80} height={80} className="flex-shrink-0 md:w-[120px] md:h-[120px]" />
+        <Icon
+          icon="fluent-emoji:man-technologist-medium"
+          width={80}
+          height={80}
+          className="flex-shrink-0 md:w-[120px] md:h-[120px]"
+        />
       </div>
     </Card>
-  )
+  );
 }
-

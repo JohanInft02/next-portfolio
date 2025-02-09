@@ -1,6 +1,5 @@
-import EducationDetail from "@/components/education/education-detail"
+import EducationDetail from "@/components/education/education-detail";
 
 export default function EducationDetailPage() {
-  return <EducationDetail />
+  return <EducationDetail />;
 }
-

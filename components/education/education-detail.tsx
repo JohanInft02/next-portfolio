@@ -1,24 +1,24 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
-import { ChevronLeft } from "lucide-react"
-import { Icon } from "@iconify/react"
-import Footer from "@/components/footer"
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { ChevronLeft } from "lucide-react";
+import { Icon } from "@iconify/react";
+import Footer from "@/components/footer";
 
 interface Education {
-  degreeTitle: string
-  university: string
-  startDate: string
-  endDate: string
-  description: string
-  technologies: string[]
-  completed: boolean
+  degreeTitle: string;
+  university: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+  technologies: string[];
+  completed: boolean;
 }
 
 const educationData: Education[] = [
@@ -59,7 +59,13 @@ const educationData: Education[] = [
     endDate: "2022-04",
     description:
       "Programa especializado en prácticas y herramientas de DevOps para mejorar la colaboración entre desarrollo y operaciones.",
-    technologies: ["Jenkins", "Ansible", "Terraform", "Prometheus", "ELK Stack"],
+    technologies: [
+      "Jenkins",
+      "Ansible",
+      "Terraform",
+      "Prometheus",
+      "ELK Stack",
+    ],
     completed: true,
   },
   {
@@ -69,13 +75,21 @@ const educationData: Education[] = [
     endDate: "Cursando",
     description:
       "Programa enfocado en las últimas técnicas y herramientas de seguridad informática y protección de datos.",
-    technologies: ["Kali Linux", "Wireshark", "Metasploit", "Nmap", "Burp Suite"],
+    technologies: [
+      "Kali Linux",
+      "Wireshark",
+      "Metasploit",
+      "Nmap",
+      "Burp Suite",
+    ],
     completed: false,
   },
-]
+];
 
 export default function EducationDetail() {
-  const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null)
+  const [selectedCertificate, setSelectedCertificate] = useState<string | null>(
+    null
+  );
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -93,13 +107,18 @@ export default function EducationDetail() {
         </h1>
         <div className="grid gap-6">
           {educationData.map((edu, index) => (
-            <Card key={index} className="p-6 bg-[#b7c7c9a1] dark:bg-[#252b48] theme-transition">
+            <Card
+              key={index}
+              className="p-6 bg-[#b7c7c9a1] dark:bg-[#252b48] theme-transition"
+            >
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
                 <div>
                   <h2 className="text-xl font-semibold text-black dark:text-white mb-2 theme-transition">
                     {edu.degreeTitle}
                   </h2>
-                  <h3 className="text-lg text-gray-700 dark:text-gray-300 mb-2 theme-transition">{edu.university}</h3>
+                  <h3 className="text-lg text-gray-700 dark:text-gray-300 mb-2 theme-transition">
+                    {edu.university}
+                  </h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mb-2 theme-transition">
                     {edu.startDate} - {edu.endDate}
                   </p>
@@ -112,7 +131,7 @@ export default function EducationDetail() {
                         className="mt-2 md:mt-0"
                         onClick={() =>
                           setSelectedCertificate(
-                            "https://udemy-certificate.s3.amazonaws.com/image/UC-b13a3fb2-f0bf-4105-8431-f21d23f5ed92.jpg?v=1715619564000",
+                            "https://udemy-certificate.s3.amazonaws.com/image/UC-b13a3fb2-f0bf-4105-8431-f21d23f5ed92.jpg?v=1715619564000"
                           )
                         }
                       >
@@ -121,7 +140,10 @@ export default function EducationDetail() {
                       </Button>
                     </DialogTrigger>
                     <DialogContent aria-describedby="education-certificate-description">
-                      <div id="education-certificate-description" className="sr-only">
+                      <div
+                        id="education-certificate-description"
+                        className="sr-only"
+                      >
                         Vista detallada del certificado educativo
                       </div>
                       {selectedCertificate && (
@@ -137,7 +159,9 @@ export default function EducationDetail() {
                   </Dialog>
                 )}
               </div>
-              <p className="text-black dark:text-gray-300 mb-4 theme-transition">{edu.description}</p>
+              <p className="text-black dark:text-gray-300 mb-4 theme-transition">
+                {edu.description}
+              </p>
               <div className="flex flex-wrap gap-2">
                 {edu.technologies.map((tech, techIndex) => (
                   <Badge key={techIndex} variant="secondary">
@@ -151,6 +175,5 @@ export default function EducationDetail() {
       </div>
       <Footer />
     </div>
-  )
+  );
 }
-
