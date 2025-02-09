@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Pie, Bar } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -21,7 +21,7 @@ import { ChevronLeft } from "lucide-react";
 import Footer from "@/components/footer";
 import { formatDate } from "@/utils/format-date";
 import { useTheme } from "next-themes";
-import type { ChartData, TooltipItem } from "chart.js";
+import type { ChartData } from "chart.js";
 
 ChartJS.register(
   ArcElement,
@@ -117,11 +117,11 @@ function calculateDuration(startDate: string, endDate: string): string {
 
 export default function WorkExperiencesDetail() {
   const { theme } = useTheme();
-  const [chartData, setChartData] = useState<ChartData<
+  /* const [chartData, setChartData] = useState<ChartData<
     "pie",
     number[],
     string
-  > | null>(null);
+  > | null>(null); */
   const [skillsChartData, setSkillsChartData] = useState<ChartData<
     "bar",
     number[],
@@ -139,7 +139,7 @@ export default function WorkExperiencesDetail() {
       });
     });
 
-    setChartData({
+    /*setChartData({
       labels: Object.keys(categoryCount),
       datasets: [
         {
@@ -148,7 +148,7 @@ export default function WorkExperiencesDetail() {
           hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
         },
       ],
-    });
+    });*/
 
     const totalSkillsCount = Object.values(skillsCount).reduce(
       (a, b) => a + b,
