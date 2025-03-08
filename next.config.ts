@@ -4,7 +4,11 @@
 const nextConfig = {
   /* config options here */
   reactStrictMode: true,
-  domains: ["avatars.githubusercontent.com", "images.unsplash.com", "udemy-certificate.s3.amazonaws.com"],
+  domains: [
+    "avatars.githubusercontent.com",
+    "images.unsplash.com",
+    "udemy-certificate.s3.amazonaws.com",
+  ],
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [

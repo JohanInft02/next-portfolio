@@ -1,22 +1,15 @@
-"use client";
-
-import { useTheme } from "next-themes";
 import { Icon } from "@iconify/react";
 
 export default function Loading() {
-  const { theme } = useTheme();
 
   return (
     <div
-      className={`fixed inset-0 flex items-center justify-center ${
-        theme === "dark" ? "bg-[#1a1f37]" : "bg-[#f8f7fd]"
-      } transition-colors duration-200`}
+      className="fixed inset-0 flex items-center justify-center bg-[#f8f7fd] dark:bg-[#1a1f37] transition-colors duration-200"
     >
       <div className="relative flex items-center justify-center">
         <div
-          className="loading-spinner absolute"
+          className="loading-spinner absolute border-l-[#06b6d4] dark:border-l-[#3b82f6]"
           style={{
-            borderLeftColor: theme === "dark" ? "#3b82f6" : "#06b6d4",
             width: "12rem",
             height: "12rem",
             borderWidth: "0.5rem",

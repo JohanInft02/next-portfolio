@@ -29,7 +29,7 @@ export default function RootLayout({
     <html lang="es" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+        <link rel="icon" type="image/svg+xml" href="./favicon.svg"/>
         <meta name="description" content="Portafolio | Johan Infante" />
         <meta name="author" content="Johan Infante" />
         <meta name="keywords" content="nextjs, tailwindcss, portfolio, portafolio, react, java, johan, infante" />
