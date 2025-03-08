@@ -42,7 +42,7 @@ interface WorkExperience {
   category: string;
   description: string;
   technologies: string[];
-  workMode: "Remote" | "Hybrid" | "On-Site";
+  workMode: "Remoto" | "Hibrido" | "Presencial";
   promotion?: {
     previousTitle: string;
     newTitle: string;
@@ -59,15 +59,15 @@ const workExperiencesData: WorkExperience[] = [
     endDate: "Presente",
     category: "Desarrollo Web",
     description:
-      "Lideré el desarrollo de una plataforma de comercio electrónico de alto tráfico, mejorando el rendimiento en un 40%. Implementé arquitectura de microservicios y contenerización de la aplicación usando Docker.",
+      "Soy parte del desarrollo de la banca en linea más usada del pais. Implementé algunos Modulos de ventas de productos bancarios usando Ionic-Angular y Arquitectura AWS Cloud, aumentando las ventas en un 40%.",
     technologies: ["Angular", "Java", "Sybase", "Ionic", "AWS"],
-    workMode: "Hybrid",
+    workMode: "Hibrido",
     promotion: {
       previousTitle: "Tecnico en Adiestramiento (Programador Jr)",
       newTitle: "Programador Fullstack",
       date: "2023-06",
       description:
-        "Promovido a Líder Técnico debido al excelente desempeño y liderazgo demostrado en proyectos críticos.",
+        "Promovido a Programador Fullstack debido al excelente desempeño en los proyectos críticos.",
     },
   },
   {
@@ -77,9 +77,9 @@ const workExperiencesData: WorkExperience[] = [
     endDate: "2024-04",
     category: "Desarrollo Web",
     description:
-      "Desarrollé y lancé una aplicación de seguimiento de fitness con más de 100 mil descargas. Integré APIs de dispositivos wearables e implementé sincronización de datos en tiempo real.",
-    technologies: ["React", "Mysql", "Plugdo.js", "Javascript", "AWS"],
-    workMode: "Remote",
+      "Desarrollé y lancé una aplicación de Medicion de Talento. Integré APIs de sistemas como Psytech y Saville e Realice Visualizacion de datos ayudando a la toma de decisiones de la organizacion.",
+    technologies: ["React", "Mysql", "Plugdo.js", "Javascript", "AWS", "Power BI"],
+    workMode: "Remoto",
   },
   {
     jobTitle: "Administrador de Bases de Datos",
@@ -88,9 +88,9 @@ const workExperiencesData: WorkExperience[] = [
     endDate: "2022-06",
     category: "Bases de Datos",
     description:
-      "Desarrollé modelos predictivos para la deserción de clientes, aumentando la retención en un 25%. Implementé pipelines de datos y creé dashboards interactivos para inteligencia empresarial.",
-    technologies: ["Python", "Pandas", "Scikit-learn", "Tableau", "SQL"],
-    workMode: "On-Site",
+      "Desarrollé consultas SQL complejas para la generación de reportes de ventas y análisis de datos. Implementé un sistema de respaldo de bases de datos en la nube.",
+    technologies: ["SQL", "PostgreSQL", "AWS", "Python", "MySQL"],
+    workMode: "Remoto",
   },
 ];
 
