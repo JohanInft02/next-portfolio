@@ -22,7 +22,7 @@ const skills = [
   "skill-icons:tailwindcss-dark",
 ];
 
-export default function ContactSection() {
+export default function TechnicalSkillsSection() {
   const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

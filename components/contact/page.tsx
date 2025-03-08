@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Icon } from "@iconify/react";
 
-export default function ProficiencySection() {
+export default function ContactSection() {
   return (
     <Card className="col-span-4 row-span-2 h-full bg-[rgba(183,199,201,0.63)] dark:bg-[#252b48] p-6 hover:bg-[#c9cbcba1] dark:hover:bg-[#2a3152] transition-colors card theme-transition">
       <h3 className="text-lg font-bold text-black dark:text-white mb-4 theme-transition">

@@ -3,9 +3,9 @@ import WelcomeSection from "@/components/welcome/page";
 import AchievementSection from "@/components/achievement/page";
 import WorkExperiencesSection from "@/components/work-experiences/page";
 import EducationSection from "@/components/education/page";
-import ContactSection from "@/components/technical-skills/page";
+import TechnicalSkillsSection from "@/components/technical-skills/page";
 import ProjectsSection from "@/components/projects/page";
-import ProficiencySection from "@/components/contact/page";
+import ContactSection from "@/components/contact/page";
 import ResumeSection from "@/components/resume/page";
 import Footer from "@/components/footer";
 
@@ -29,13 +29,13 @@ export default function Home() {
 
           <div className="col-span-1 md:col-span-12 grid grid-cols-1 md:grid-cols-12 gap-4">
             <div className="md:col-span-6">
-              <ContactSection />
+              <TechnicalSkillsSection />
             </div>
             <div className="md:col-span-6">
               <ProjectsSection />
             </div>
             <div className="md:col-span-4">
-              <ProficiencySection />
+              <ContactSection />
             </div>
             <div className="md:col-span-8">
               <ResumeSection />
