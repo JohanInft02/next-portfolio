@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FileDown, Clock } from "lucide-react";
+import Link from "next/link";
 
 export default function ResumeSection() {
   const lastUpdate = "2024-02-04"; // You can make this dynamic
@@ -24,10 +25,11 @@ export default function ResumeSection() {
             <Clock className="w-4 h-4 mr-1" />
             Última actualización: {lastUpdate}
           </div>
-          <Button className="bg-[#0ce0ad] hover:bg-[#0bc399] text-white dark:bg-blue-600 dark:hover:bg-blue-700 theme-transition">
-            <FileDown className="w-4 h-4 mr-2" />
-            Descargar CV
-          </Button>
+          <Link href="/cv/Curriculum_Johan_Infante_es.pdf" target="_blank" download="CV_Johan_Infante.pdf">
+            <Button className="bg-[#0ce0ad] hover:bg-[#0bc399] text-white dark:bg-blue-600 dark:hover:bg-blue-700 theme-transition">
+              <FileDown className="w-4 h-4 mr-2" />
+            </Button>
+          </Link>
         </div>
       </div>
     </Card>
