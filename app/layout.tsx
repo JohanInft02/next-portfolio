@@ -18,18 +18,20 @@ export default function RootLayout({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    if (isLoading){
+      const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
 
     return () => clearTimeout(timer);
+    }
   }, []);
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+        <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
         <meta name="description" content="Portafolio | Johan Infante" />
         <meta name="author" content="Johan Infante" />

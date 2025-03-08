@@ -1,4 +1,3 @@
-"use client";
 
 import { Icon } from "@iconify/react";
 import { useTheme } from "next-themes";
