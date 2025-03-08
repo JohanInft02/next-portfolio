@@ -28,6 +28,7 @@ export default function ResumeSection() {
           <Link href="/cv/Curriculum_Johan_Infante_es.pdf" target="_blank" download="CV_Johan_Infante.pdf">
             <Button className="bg-[#0ce0ad] hover:bg-[#0bc399] text-white dark:bg-blue-600 dark:hover:bg-blue-700 theme-transition">
               <FileDown className="w-4 h-4 mr-2" />
+              Descargar CV
             </Button>
           </Link>
         </div>
