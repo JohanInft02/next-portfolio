@@ -1,9 +1,6 @@
 /**
  * @type {import('next').NextConfig}
  */
-
-import { format } from "path";
-
 const nextConfig = {
   /* config options here */
   reactStrictMode: true,

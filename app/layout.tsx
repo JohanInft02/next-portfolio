@@ -26,9 +26,15 @@ export default function RootLayout({
   }, []);
 
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta name="description" content="Portafolio | Johan Infante" />
+        <meta name="author" content="Johan Infante" />
+        <meta name="keywords" content="nextjs, tailwindcss, portfolio, portafolio, react, java, johan, infante" />
+        <title>Portafolio | Johan Infante</title>
       </head>
       <body className={`${inter.className} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>

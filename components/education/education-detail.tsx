@@ -19,71 +19,31 @@ interface Education {
   description: string;
   technologies: string[];
   completed: boolean;
+  url?: string;
 }
 
 const educationData: Education[] = [
   {
     degreeTitle: "Licenciatura en Desarrollo de Software",
     university: "Universidad Tecnológica",
-    startDate: "2018-09",
-    endDate: "2022-06",
+    startDate: "2016-03",
+    endDate: "Cursando",
     description:
       "Programa integral que cubre los fundamentos del desarrollo de software, incluyendo programación, diseño de sistemas, bases de datos y metodologías ágiles.",
-    technologies: ["Java", "Python", "JavaScript", "SQL", "Git"],
-    completed: true,
-  },
-  {
-    degreeTitle: "Maestría en Ciencias de la Computación",
-    university: "Universidad Nacional",
-    startDate: "2022-09",
-    endDate: "Cursando",
-    description:
-      "Programa avanzado que profundiza en inteligencia artificial, aprendizaje automático y computación en la nube.",
-    technologies: ["TensorFlow", "PyTorch", "AWS", "Docker", "Kubernetes"],
+    technologies: ["Microservice", "AWS", "Typescript", "SQL", "Azure Devops"],
     completed: false,
   },
   {
-    degreeTitle: "Diplomado en Desarrollo Web Full Stack",
-    university: "Instituto de Tecnología Web",
-    startDate: "2021-03",
-    endDate: "2021-09",
+    degreeTitle: "Tecnico en Desarrollo de Software",
+    university: "Universidad Tecnológica de Panamá",
+    startDate: "2016-03",
+    endDate: "2020-12",
     description:
-      "Programa intensivo que cubre el desarrollo web tanto en el frontend como en el backend, con énfasis en tecnologías modernas.",
-    technologies: ["React", "Node.js", "Express", "MongoDB", "GraphQL"],
+      "Programa de formación técnica que cubre los fundamentos del desarrollo de software, incluyendo programación, diseño de sistemas, bases de datos y metodologías ágiles.",
+    technologies: ["Java", "HTML", "JavaScript", "SQL", "Git"],
     completed: true,
-  },
-  {
-    degreeTitle: "Certificación en DevOps",
-    university: "Academia de DevOps",
-    startDate: "2022-01",
-    endDate: "2022-04",
-    description:
-      "Programa especializado en prácticas y herramientas de DevOps para mejorar la colaboración entre desarrollo y operaciones.",
-    technologies: [
-      "Jenkins",
-      "Ansible",
-      "Terraform",
-      "Prometheus",
-      "ELK Stack",
-    ],
-    completed: true,
-  },
-  {
-    degreeTitle: "Curso de Especialización en Ciberseguridad",
-    university: "Centro de Seguridad Informática",
-    startDate: "2023-06",
-    endDate: "Cursando",
-    description:
-      "Programa enfocado en las últimas técnicas y herramientas de seguridad informática y protección de datos.",
-    technologies: [
-      "Kali Linux",
-      "Wireshark",
-      "Metasploit",
-      "Nmap",
-      "Burp Suite",
-    ],
-    completed: false,
-  },
+    url: "https://udemy-certificate.s3.amazonaws.com/image/UC-b13a3fb2-f0bf-4105-8431-f21d23f5ed92.jpg?v=1715619564000",
+  }
 ];
 
 export default function EducationDetail() {
@@ -131,8 +91,7 @@ export default function EducationDetail() {
                         className="mt-2 md:mt-0"
                         onClick={() =>
                           setSelectedCertificate(
-                            "https://udemy-certificate.s3.amazonaws.com/image/UC-b13a3fb2-f0bf-4105-8431-f21d23f5ed92.jpg?v=1715619564000"
-                          )
+                            edu.url || "/placeholder.svg")
                         }
                       >
                         <Icon icon="mdi:certificate" className="mr-2 h-4 w-4" />

@@ -2,10 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ChevronLeft, Trophy } from "lucide-react";
 import Footer from "@/components/footer";
 
@@ -13,36 +11,25 @@ interface Achievement {
   title: string;
   description: string;
   year: string;
-  institution: string; // New field
+  institution: string;
 }
 
 const achievements: Achievement[] = [
   {
-    title: "Lista del Decano",
-    description: "Mantuvo excelencia académica durante todo el programa",
-    year: "2023",
-    institution: "Universidad Tecnológica de Panamá",
+    title: "Google Active - Mejora tu productividad con IA - Gemini",
+    description: "Workshop de Google sobre inteligencia artificial",
+    year: "2024",
+    institution: "Google",
   },
   {
-    title: "Mejor Proyecto Final",
-    description: "Premiado por el proyecto final sobresaliente",
-    year: "2023",
-    institution: "Banco General S.A",
-  },
-  {
-    title: "Ganador de Competencia de Programación",
-    description:
-      "Primer lugar en la competencia de codificación a nivel universitario",
-    year: "2022",
-    institution: "IEEE Computer Society Panamá",
+    title: "Curso Microsoft Power Bi: Inicial",
+    description: "Se aprendió a utilizar Power Bi para análisis de datos",
+    year: "2021",
+    institution: "IFADESA - Comunidad para el mundo de los Negocios",
   },
 ];
 
 export default function Achievements() {
-  //const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null)
-  const [open, setOpen] = useState(false);
-  const [selectedAchievement, setSelectedAchievement] =
-    useState<Achievement | null>(null);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -80,40 +67,9 @@ export default function Achievements() {
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 theme-transition">
                 Institución: {achievement.institution}
               </p>
-              <Button
-                variant="outline"
-                className="mt-2"
-                onClick={() => {
-                  setOpen(true);
-                  setSelectedAchievement(achievement);
-                }}
-              >
-                Ver Certificado
-              </Button>
             </Card>
           ))}
         </div>
-        <Dialog open={open} onOpenChange={setOpen}>
-          <DialogContent>
-            {selectedAchievement && (
-              <>
-                <Image
-                  src={`/certificates/${selectedAchievement.title}.jpg`}
-                  alt={selectedAchievement.title}
-                  width={800}
-                  height={600}
-                  className="w-full h-auto"
-                  onError={(e) => {
-                    console.error(e);
-                  }}
-                />
-                <Button onClick={() => setOpen(false)} className="mt-4">
-                  Cerrar
-                </Button>
-              </>
-            )}
-          </DialogContent>
-        </Dialog>
       </div>
       <Footer />
     </div>
