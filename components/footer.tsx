@@ -4,7 +4,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full py-6 px-4 bg-transparent mt-8">
+    <footer className="w-full py-6 px-4 bg-transparent mt-2">
       <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-600 dark:text-gray-300">
         <p suppressHydrationWarning>
           &copy; {currentYear} Johan Infante. All rights reserved.

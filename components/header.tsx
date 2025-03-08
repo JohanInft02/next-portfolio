@@ -26,7 +26,7 @@ export default function Header() {
             <div className="relative w-full h-full flex justify-center items-center">
               <Icon
                 icon="fluent-emoji-flat:sun"
-                className={`absolute h-8 w-8 md:h-12 md:w-12 transition-all duration-300 ${
+                className={`absolute h-16 w-16 md:h-20 md:w-20 transition-all duration-300 ${
                   theme === "dark"
                     ? "opacity-0 scale-50"
                     : "opacity-100 scale-100"
@@ -34,7 +34,7 @@ export default function Header() {
               />
               <Icon
                 icon="noto:full-moon"
-                className={`absolute h-8 w-8 md:h-12 md:w-12 transition-all duration-300 ${
+                className={`absolute h-16 w-16 md:h20 md:w-20 transition-all duration-300 ${
                   theme === "dark"
                     ? "opacity-100 scale-100"
                     : "opacity-0 scale-50"
