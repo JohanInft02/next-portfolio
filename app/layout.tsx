@@ -18,13 +18,11 @@ export default function RootLayout({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (isLoading){
       const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
 
     return () => clearTimeout(timer);
-    }
   }, []);
 
   return (
@@ -32,7 +30,6 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
         <meta name="description" content="Portafolio | Johan Infante" />
         <meta name="author" content="Johan Infante" />
         <meta name="keywords" content="nextjs, tailwindcss, portfolio, portafolio, react, java, johan, infante" />
@@ -44,7 +41,6 @@ export default function RootLayout({
             <Loading />
           ) : (
             <div className="min-h-screen bg-gradient-to-b from-[#f8f7fd] to-[#b9f9fb] dark:from-[#1a1f37] dark:to-[#0c0f1a] theme-transition">
-              <img id="background" src="background.svg" alt="" fetchPriority="high" />
               <Header />
               {children}
             </div>

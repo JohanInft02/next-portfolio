@@ -59,6 +59,12 @@
   }
 }
 
+@theme {
+  --breakpoint-xs: 120px;
+  --breakpoint-2xl: 100rem;
+  --breakpoint-3xl: 120rem;
+}
+
 #background  {
   position: fixed;
   top: 0;

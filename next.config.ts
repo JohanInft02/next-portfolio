@@ -6,11 +6,6 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     formats: ["image/avif", "image/webp"],
-    domains: [
-      "avatars.githubusercontent.com",
-      "images.unsplash.com",
-      "udemy-certificate.s3.amazonaws.com",
-    ],
     remotePatterns: [
       {
         protocol: "https",
@@ -35,10 +30,6 @@ const nextConfig = {
         search: "?v=1715619564000",
       },
     ],
-  },
-  i18n: {
-    locales: ["en", "es"],
-    defaultLocale: "es",
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",

@@ -26,6 +26,7 @@ export default function ProfileSection() {
     "Kubernetes",
     "AWS",
     "GraphQL",
+    "Java"
   ];
 
   return (
@@ -60,7 +61,8 @@ export default function ProfileSection() {
             </Button>
           </DialogTrigger>
           <DialogContent
-            className="sm:max-w-[425px]"
+            className="md:max-w-[470px] md:text-base min-[120px]:max-w-[340px] min-[120px]:text-xs"
+            id="profile-dialog"
             aria-describedby="profile-dialog-description"
           >
             <DialogHeader>
@@ -85,7 +87,7 @@ export default function ProfileSection() {
                   <Icon icon="cif:pa" className="ml-2 w-6 h-6" />
                 </span>
               </div>
-              <div className="grid grid-cols-4 items-start gap-4">
+              <div className="grid grid-cols-4 items-start gap-6">
                 <span className="font-bold">Descripción:</span>
                 <p className="col-span-3">
                   Desarrollador apasionado por crear soluciones innovadoras.
@@ -107,7 +109,12 @@ export default function ProfileSection() {
               <div className="grid grid-cols-4 items-center gap-4">
                 <span className="font-bold">Pasatiempo:</span>
                 <span className="col-span-3">
-                  Diseño de interfaces de usuario (UI/UX)
+                  Crear Videojuegos y aprender sobre IA
+                </span>
+              </div>
+              <div className="relative max-w-fit min-w-min box-border min-[120px]:content-center px-1 h-7 rounded-full shadow-lg bg-default bg-gradient-to-br from-indigo-500 to-pink-400 border-white/50 shadow-pink-300/50">
+                <span className="flex-1 font-normal pt-10 px-2 drop-shadow shadow-black text-white">
+                  Disponible para trabajar
                 </span>
               </div>
             </div>

@@ -117,11 +117,6 @@ function calculateDuration(startDate: string, endDate: string): string {
 
 export default function WorkExperiencesDetail() {
   const { theme } = useTheme();
-  /* const [chartData, setChartData] = useState<ChartData<
-    "pie",
-    number[],
-    string
-  > | null>(null); */
   const [skillsChartData, setSkillsChartData] = useState<ChartData<
     "bar",
     number[],
@@ -138,17 +133,6 @@ export default function WorkExperiencesDetail() {
         skillsCount[tech] = (skillsCount[tech] || 0) + 1;
       });
     });
-
-    /*setChartData({
-      labels: Object.keys(categoryCount),
-      datasets: [
-        {
-          data: Object.values(categoryCount),
-          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-        },
-      ],
-    });*/
 
     const totalSkillsCount = Object.values(skillsCount).reduce(
       (a, b) => a + b,
