@@ -2,6 +2,7 @@ import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import AchievementsData from "@/data/archievementData.json";
+import { Achievement } from "@/interfaces/Achievement";
 import { ChevronLeft, Trophy } from "lucide-react";
 import Link from "next/link";
 

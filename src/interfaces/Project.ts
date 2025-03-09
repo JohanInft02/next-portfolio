@@ -1,5 +1,5 @@
 // Interfaz para definir la estructura de un proyecto
-interface Project {
+export interface Project {
     id: number;
     title: string;
     category: "Web" | "Mobile" | "Data Analytics";

@@ -1,5 +1,5 @@
 //Interfaz para definir la estructura de los datos de la educación
-interface Education {
+export interface Education {
     degreeTitle: string;
     university: string;
     startDate: string;

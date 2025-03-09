@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import workdata from "@/data/workExperiencesData.json";
+import { WorkExperience } from "@/interfaces/WorkExperience";
 import { calculateDuration } from "@/lib/calculateDuration";
 import { formatDate } from "@/lib/formatDate";
 import type { ChartData } from "chart.js";
@@ -36,7 +37,7 @@ ChartJS.register(
   ChartDataLabels
 );
 
-let workExperiencesData: WorkExperience[] = workdata.map((data) => data as WorkExperience);
+const workExperiencesData: WorkExperience[] = workdata.map((data) => data as WorkExperience);
 
 export default function WorkExperiencesDetail() {
   const { theme } = useTheme();

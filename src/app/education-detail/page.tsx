@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import EducationData from "@/data/educationData.json";
+import { Education } from "@/interfaces/Education";
 import { Icon } from "@iconify/react";
 import { ChevronLeft } from "lucide-react";
 import Image from "next/image";

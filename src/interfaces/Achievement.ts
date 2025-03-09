@@ -1,5 +1,5 @@
 // interfaz para definir los atributos de un logro
-interface Achievement {
+export interface Achievement {
     title: string;
     description: string;
     year: string;

@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import ProjectData from "@/data/projectsData.json";
+import { Project } from "@/interfaces/Project";
 import { ChevronLeft, Github, Globe } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -77,57 +78,6 @@ const ProjectCard = ({ project }: { project: Project }) => (
       </div>
     </div>
   </Card>
-);
-
-const CardExample = ({ project }: { project: Project }) => (
-  <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-    <a href="#">
-      <img
-        className="rounded-t-lg"
-        src="https://flowbite.com/docs/images/blog/image-1.jpg"
-        alt=""
-      />
-    </a>
-    <div className="p-5">
-      <a href="#">
-        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {project.title}
-        </h5>
-      </a>
-      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-        Here are the biggest enterprise technology acquisitions of 2021 so far,
-        in reverse chronological order.
-      </p>
-      <div className="flex gap-3">
-        <a
-          href={project.liveUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1"
-        >
-          <Button variant="outline" size="sm" className="w-full">
-            <Globe className="w-4 h-4 mr-2" />
-            Ver en Vivo
-          </Button>
-        </a>
-        <a
-          href={project.codeUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1"
-        >
-          <Button
-            variant="default"
-            size="sm"
-            className="w-full bg-[#24292e] hover:bg-[#2c3137] dark:bg-[#2d333b] dark:hover:bg-[#353b43]"
-          >
-            <Github className="w-4 h-4 mr-2" />
-            Ver Código
-          </Button>
-        </a>
-      </div>
-    </div>
-  </div>
 );
 
 export default function ProjectsDetail() {

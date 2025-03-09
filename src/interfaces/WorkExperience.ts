@@ -1,5 +1,5 @@
 // Interfaz para definir la estructura de un objeto de experiencia laboral
-interface WorkExperience {
+export interface WorkExperience {
     jobTitle: string;
     company: string;
     startDate: string;
