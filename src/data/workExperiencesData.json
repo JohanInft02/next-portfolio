@@ -1,0 +1,57 @@
+[
+    {
+        "jobTitle": "Programador Fullstack",
+        "company": "Banco General S.A",
+        "startDate": "2022-09",
+        "endDate": "Presente",
+        "category": "Desarrollo Web",
+        "description": "Soy parte del desarrollo de la banca en linea más usada del pais. Implementé algunos Modulos de ventas de productos bancarios usando Ionic-Angular y Arquitectura AWS Cloud, aumentando las ventas en un 40%.",
+        "technologies": [
+            "Angular",
+            "Java",
+            "Sybase",
+            "Ionic",
+            "AWS"
+        ],
+        "workMode": "Hibrido",
+        "promotion": {
+            "previousTitle": "Tecnico en Adiestramiento (Programador Jr)",
+            "newTitle": "Programador Fullstack",
+            "date": "2023-06",
+            "description": "Promovido a Programador Fullstack debido al excelente desempeño en los proyectos críticos."
+        }
+    },
+    {
+        "jobTitle": "Consultor de Tecnología",
+        "company": "Transiciones S.A",
+        "startDate": "2019-11",
+        "endDate": "2024-04",
+        "category": "Desarrollo Web",
+        "description": "Desarrollé y lancé una aplicación de Medicion de Talento. Integré APIs de sistemas como Psytech y Saville e Realice Visualizacion de datos ayudando a la toma de decisiones de la organizacion.",
+        "technologies": [
+            "React",
+            "Mysql",
+            "Plugdo.js",
+            "Javascript",
+            "AWS",
+            "Power BI"
+        ],
+        "workMode": "Remoto"
+    },
+    {
+        "jobTitle": "Administrador de Bases de Datos",
+        "company": "RichInsights",
+        "startDate": "2021-03",
+        "endDate": "2022-06",
+        "category": "Bases de Datos",
+        "description": "Desarrollé consultas SQL complejas para la generación de reportes de ventas y análisis de datos. Implementé un sistema de respaldo de bases de datos en la nube.",
+        "technologies": [
+            "SQL",
+            "PostgreSQL",
+            "AWS",
+            "Python",
+            "MySQL"
+        ],
+        "workMode": "Remoto"
+    }
+]

@@ -1,0 +1,33 @@
+[
+    {
+        "degreeTitle": "Licenciatura en Desarrollo de Software",
+        "university": "Universidad Tecnológica de Panamá",
+        "startDate": "2016-03",
+        "endDate": "Cursando",
+        "description": "Programa integral que cubre los fundamentos del desarrollo de software, incluyendo programación, diseño de sistemas, bases de datos y metodologías ágiles.",
+        "technologies": [
+            "Microservice",
+            "AWS",
+            "Typescript",
+            "SQL",
+            "Azure Devops"
+        ],
+        "completed": false
+    },
+    {
+        "degreeTitle": "Tecnico en Desarrollo de Software",
+        "university": "Universidad Tecnológica de Panamá",
+        "startDate": "2016-03",
+        "endDate": "2020-12",
+        "description": "Programa de formación técnica que cubre los fundamentos del desarrollo de software, incluyendo programación, diseño de sistemas, bases de datos y metodologías ágiles.",
+        "technologies": [
+            "Java",
+            "HTML",
+            "JavaScript",
+            "SQL",
+            "Git"
+        ],
+        "completed": true,
+        "url": "https://udemy-certificate.s3.amazonaws.com/image/UC-b13a3fb2-f0bf-4105-8431-f21d23f5ed92.jpg?v=1715619564000"
+    }
+]

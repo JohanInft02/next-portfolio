@@ -1,0 +1,64 @@
+[
+    {
+        "id": 1,
+        "title": "E-commerce Avanzado",
+        "category": "Web",
+        "image": "/placeholder.svg?height=200&width=300",
+        "technologies": [
+            "React",
+            "Node.js",
+            "MongoDB"
+        ],
+        "liveUrl": "https://example.com",
+        "codeUrl": "https://github.com"
+    },
+    {
+        "id": 2,
+        "title": "App de Fitness",
+        "category": "Mobile",
+        "image": "/placeholder.svg?height=200&width=300",
+        "technologies": [
+            "React Native",
+            "Firebase"
+        ],
+        "liveUrl": "https://example.com",
+        "codeUrl": "https://github.com"
+    },
+    {
+        "id": 3,
+        "title": "Dashboard de Análisis",
+        "category": "Data Analytics",
+        "image": "/placeholder.svg?height=200&width=300",
+        "technologies": [
+            "Python",
+            "Tableau"
+        ],
+        "liveUrl": "https://example.com",
+        "codeUrl": "https://github.com"
+    },
+    {
+        "id": 4,
+        "title": "E-commerce principiante",
+        "category": "Web",
+        "image": "/placeholder.svg?height=200&width=300",
+        "technologies": [
+            "React",
+            "Node.js",
+            "MongoDB"
+        ],
+        "liveUrl": "https://example.com",
+        "codeUrl": "https://github.com"
+    },
+    {
+        "id": 5,
+        "title": "App de Fitness principiante",
+        "category": "Mobile",
+        "image": "/placeholder.svg?height=200&width=300",
+        "technologies": [
+            "React Native",
+            "Firebase"
+        ],
+        "liveUrl": "https://example.com",
+        "codeUrl": "https://github.com"
+    }
+]
