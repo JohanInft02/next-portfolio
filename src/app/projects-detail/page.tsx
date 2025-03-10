@@ -19,6 +19,8 @@ const ProjectCard = ({ project }: { project: Project }) => (
         src={project.image}
         alt={project.title}
         fill
+        loading = 'eager'
+        quality={60}
         className="object-cover"
       />
     </div>
