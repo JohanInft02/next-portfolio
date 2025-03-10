@@ -10,8 +10,7 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "avatars.githubusercontent.com",
-        pathname: "/u/57459541",
-        search: "?v=4",
+        pathname: "/u/**",
       },
       {
         protocol: "https",
@@ -27,9 +26,7 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "flowbite.com",
-        port: "",
         pathname: "/docs/images/blog/image-1.jpg",
-        search: "",
       },
     ],
   },
