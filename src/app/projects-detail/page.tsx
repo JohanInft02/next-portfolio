@@ -16,7 +16,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
   <Card className="overflow-hidden bg-white dark:bg-[#252b48] dark:border-gray-700 transition-all duration-200 hover:shadow-lg">
     <div className="aspect-video relative">
       <Image
-        src="https://flowbite.com/docs/images/blog/image-1.jpg"
+        src={project.image}
         alt={project.title}
         fill
         className="object-cover"
@@ -37,6 +37,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
       <h3 className="text-lg font-semibold text-black dark:text-white mb-2 theme-transition">
         {project.title}
       </h3>
+      <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{project.description}</p>
       <div className="flex flex-wrap gap-2 mb-4">
         {project.technologies.map((tech) => (
           <Badge
@@ -48,23 +49,29 @@ const ProjectCard = ({ project }: { project: Project }) => (
           </Badge>
         ))}
       </div>
-      <div className="flex gap-3">
+      {project.institution && (
+      <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
+            Proyecto realizado para <a href={project.institutionUrl} target="_blank" className="text-blue-700 hover:underline dark:text-blue-500">{project.institution}</a>
+      </div> )}
+      <span className="mb-4 text-sm text-gray-500 dark:text-gray-400">Elaborado: {project.year}</span>
+      <div className="flex gap-3 mt-3">
         <a
           href={project.liveUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1"
+          className="flex-initial"
         >
           <Button variant="outline" size="sm" className="w-full">
             <Globe className="w-4 h-4 mr-2" />
             Ver en Vivo
           </Button>
         </a>
+        {project.codeUrl && (
         <a
           href={project.codeUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1"
+          className="flex-auto"
         >
           <Button
             variant="default"
@@ -74,7 +81,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
             <Github className="w-4 h-4 mr-2" />
             Ver Código
           </Button>
-        </a>
+        </a> )}
       </div>
     </div>
   </Card>
@@ -96,7 +103,7 @@ export default function ProjectsDetail() {
           </Link>
         </div>
         <h1 className="text-2xl md:text-3xl font-bold text-black dark:text-white mb-6 theme-transition">
-          Mis Proyectos
+          Proyectos Trabajados
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (

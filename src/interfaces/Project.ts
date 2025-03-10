@@ -2,9 +2,13 @@
 export interface Project {
     id: number;
     title: string;
-    category: "Web" | "Mobile" | "Data Analytics";
+    description: string;
+    category: "Web" | "Mobile" | "Data Analytics" | "API"  ;
     image: string;
     technologies: string[];
+    institution?: string;
+    institutionUrl?: string;
+    year: string;
     liveUrl: string;
-    codeUrl: string;
+    codeUrl?: string;
 }

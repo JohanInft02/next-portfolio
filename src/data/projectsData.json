@@ -1,63 +1,84 @@
 [
     {
         "id": 1,
-        "title": "E-commerce Avanzado",
+        "title": "Teddy Bear Shop",
+        "description": "E-commerce de ropa de bebé. Cuenta con un carrito de compras y un sistema de pagos.",
         "category": "Web",
-        "image": "/placeholder.svg?height=200&width=300",
+        "image": "https://flowbite.com/docs/images/blog/image-1.jpg",
         "technologies": [
-            "React",
-            "Node.js",
-            "MongoDB"
+            "HTML",
+            "CSS",
+            "JavaScript"
         ],
-        "liveUrl": "https://example.com",
-        "codeUrl": "https://github.com"
+        "year": "2018",
+        "liveUrl": "https://johaninft02.github.io/TeddyBear/",
+        "codeUrl": "https://github.com/JohanInft02/TeddyBear"
     },
     {
         "id": 2,
-        "title": "App de Fitness",
-        "category": "Mobile",
-        "image": "/placeholder.svg?height=200&width=300",
+        "title": "Leiro Assessment and Talent Solutions (LATS)",
+        "description": "Plataforma de gestión del talento que facilita los procesos de selección y desarrollo dentro de las organizaciones.",
+        "category": "Web",
+        "image": "https://flowbite.com/docs/images/blog/image-1.jpg",
         "technologies": [
-            "React Native",
-            "Firebase"
+            "React",
+            "PlugdoJS",
+            "Node.js",
+            "MySQL"
         ],
-        "liveUrl": "https://example.com",
-        "codeUrl": "https://github.com"
+        "year": "2019-2024",
+        "institution": "Leiro Assessments (Transiciones S.A)",
+        "institutionUrl": "https://leiroassessments.com/",
+        "liveUrl": "https://www.assessmentandtalentsolutions.net/v2/auth/en"
     },
     {
         "id": 3,
-        "title": "Dashboard de Análisis",
-        "category": "Data Analytics",
-        "image": "/placeholder.svg?height=200&width=300",
+        "title": "The Watcher Comic",
+        "description": "Tienda de ventas de cómics. Cuenta con un carrito de compras y un sistema de pagos.",
+        "category": "Web",
+        "image": "https://flowbite.com/docs/images/blog/image-1.jpg",
         "technologies": [
-            "Python",
-            "Tableau"
+            "Firebase",
+            "Tailwind CSS",
+            "React",
+            "Node.js",
+            "MySQL"
         ],
-        "liveUrl": "https://example.com",
-        "codeUrl": "https://github.com"
+        "institution": "Universidad Tecnologica de Panamá",
+        "institutionUrl": "https://utp.ac.pa/",
+        "year": "2021",
+        "liveUrl": "http://twc-comicsite-frontend.vercel.app/",
+        "codeUrl": "https://github.com/TheWatcherComic"
     },
     {
         "id": 4,
-        "title": "E-commerce principiante",
-        "category": "Web",
-        "image": "/placeholder.svg?height=200&width=300",
+        "title": "Banca Movil App (Modulo Plazo Fijo)",
+        "description": "Aplicación móvil de banca para el Banco General. Tiene la funcionalidad de crear y renovar plazos fijos.",
+        "category": "Mobile",
+        "image": "https://flowbite.com/docs/images/blog/image-1.jpg",
         "technologies": [
-            "React",
-            "Node.js",
-            "MongoDB"
+            "Angular",
+            "Ionic",
+            "Java",
+            "Spring Boot",
+            "AWS"
         ],
-        "liveUrl": "https://example.com",
-        "codeUrl": "https://github.com"
+        "institution": "Banco General S.A",
+        "institutionUrl": "https://www.bgeneral.com/",
+        "year": "2024 - presente",
+        "liveUrl": "https://play.google.com/store/search?q=banco+general&c=apps&hl=es_PA&gl=US"
     },
     {
         "id": 5,
         "title": "App de Fitness principiante",
+        "description": "App de entrenamiento personal",
         "category": "Mobile",
-        "image": "/placeholder.svg?height=200&width=300",
+        "image": "https://flowbite.com/docs/images/blog/image-1.jpg",
         "technologies": [
             "React Native",
             "Firebase"
         ],
+        "year": "2018",
         "liveUrl": "https://example.com",
         "codeUrl": "https://github.com"
     }

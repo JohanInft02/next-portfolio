@@ -19,14 +19,17 @@ export default function ProfileSection() {
 
   const primaryTechnologies = [
     "React",
-    "Next.js",
-    "Node.js",
+    "Angular",
+    "Ionic",
+    "NextJS",
+    "NodeJS",
     "TypeScript",
     "Docker",
-    "Kubernetes",
     "AWS",
-    "GraphQL",
-    "Java"
+    "SQL",
+    "Java",
+    "Spring Boot",
+    "Python"
   ];
 
   return (
