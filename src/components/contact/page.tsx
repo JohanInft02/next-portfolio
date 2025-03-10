@@ -30,6 +30,14 @@ export default function ContactSection() {
         >
           <Icon icon="skill-icons:linkedin" className="w-8 h-8" />
         </a>
+        <a
+          href="https://wa.me/50762688384"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:opacity-80 transition-opacity"
+        >
+          <Icon icon="logos:whatsapp-icon" className="w-8 h-8" />
+        </a>
       </div>
     </Card>
   );

@@ -53,7 +53,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
       </div>
       {project.institution && (
       <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-            Proyecto realizado para <a href={project.institutionUrl} target="_blank" className="text-blue-700 hover:underline dark:text-blue-500">{project.institution}</a>
+            Proyecto realizado para <a href={project.institutionUrl} target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline dark:text-blue-500">{project.institution}</a>
       </div> )}
       <span className="mb-4 text-sm text-gray-500 dark:text-gray-400">Elaborado: {project.year}</span>
       <div className="flex gap-3 mt-3">
