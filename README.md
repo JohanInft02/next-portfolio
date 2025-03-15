@@ -1,5 +1,7 @@
 # Portafolio Personal 
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c7db5651-b3a9-4f73-bf3b-92c09cd11343/deploy-status)](https://app.netlify.com/sites/jinfante/deploys)
+
 Este es un proyecto de [Next.js](https://nextjs.org) inicializado con [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Comenzando
